@@ -173,17 +173,23 @@ public class JsTestDriverMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException {
         MojoLogger.bindLog(getLog());
 
+		printBanner();
+
         if (skipTests) {
-            getLog().info("Tests are skipped.");
+            getLog().info("Tests are skipped due to <skipTests> setting.");
             return;
         }
 
-        printBanner();
+        ProcessConfiguration processConfiguration = buildProcessConfiguration();
 
-        ProcessConfiguration config = buildProcessConfiguration();
-        logProcessArguments(config);
+		File configFile = new File(config);
+		if (!configFile.exists()) {
+			getLog().warn("NO TESTS RUN - Unable to locate config file:" + config + "\n");
+			return;
+		}
 
-        resultsProcessor.processResults(processExecutor.execute(config));
+		logProcessArguments(processConfiguration);
+        resultsProcessor.processResults(processExecutor.execute(processConfiguration));
     }
 
     private ProcessConfiguration buildProcessConfiguration()
@@ -283,7 +289,10 @@ public class JsTestDriverMojo extends AbstractMojo {
         }
         if (StringUtils.isNotEmpty(testOutput)) {
             if (testOutput != null && !testOutput.equals(".")) {
-                FileUtils.makeDirectoryIfNotExists(testOutput);
+				if (!testOutput.startsWith("/")) {
+					testOutput = new File(defaultedBasePath, testOutput).getAbsolutePath();
+				}
+				FileUtils.makeDirectoryIfNotExists(testOutput);
             }
             testRunner.addArgument("--testOutput", testOutput);
         }

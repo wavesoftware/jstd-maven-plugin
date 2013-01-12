@@ -1,18 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <name>JsTestDriver Maven Plugin</name>
     <groupId>com.googlecode.jstd-maven-plugin</groupId>
     <artifactId>jstd-maven-plugin</artifactId>
-    <version>1.3.2.7-SNAPSHOT</version>
+    <version>1.3.5.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <url>http://code.google.com/jstd-maven-plugin</url>
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
 
     <licenses>
         <license>
@@ -27,30 +22,35 @@
         <connection>scm:git:https://code.google.com/p/jstd-maven-plugin/</connection>
         <developerConnection>scm:git:https://code.google.com/p/jstd-maven-plugin/</developerConnection>
     </scm>
-    
+
     <developers>
         <developer>
             <id>burke.webster</id>
             <name>Burke Webster</name>
             <email>burke.webster@gmail.com</email>
         </developer>
+        <developer>
+            <id>nateredding</id>
+            <name>Nathan Redding</name>
+            <email>nateredding@gmail.com</email>
+        </developer>
     </developers>
 
     <properties>
-        <jstd.version>1.3.2</jstd.version>
-        <maven.plugin.dev.api.version>3.0-alpha-1</maven.plugin.dev.api.version>
+        <jstd.version>1.3.5</jstd.version>
+        <maven.plugin.dev.api.version>3.0.4</maven.plugin.dev.api.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>1.4</version>
+            <version>2.4</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
-            <version>2.5</version>
+            <version>2.6</version>
         </dependency>
         <dependency>
             <groupId>com.google.jstestdriver</groupId>
@@ -64,34 +64,33 @@
             <version>${maven.plugin.dev.api.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.maven.artifact</groupId>
+            <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
             <version>${maven.plugin.dev.api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-project</artifactId>
-            <version>${maven.plugin.dev.api.version}</version>
+            <version>3.0-alpha-2</version>
         </dependency>
 
         <!-- test deps -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>5.8</version>
-            <classifier>jdk15</classifier>
+            <version>6.8</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.8.4</version>
+            <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
-            <version>1.1</version>
+            <version>1.3</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -100,8 +99,20 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.google.code.maven-svn-wagon</groupId>
+                        <artifactId>maven-svn-wagon</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
+                <version>2.5.1</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -111,4 +122,18 @@
         </plugins>
     </build>
 
+    <!--<repositories>-->
+        <!--<repository>-->
+        <!--<id>maven2-repository.dev.java.net</id>-->
+        <!--<name>Java.net Repository for Maven</name>-->
+        <!--<url>http://download.java.net/maven/2/</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
+
+    <distributionManagement>
+        <repository>
+            <id>jstd-maven-plugin.googlecode.com</id>
+            <url>svn:https://jstd-maven-plugin.googlecode.com/svn/maven2</url>
+        </repository>
+    </distributionManagement>
 </project>

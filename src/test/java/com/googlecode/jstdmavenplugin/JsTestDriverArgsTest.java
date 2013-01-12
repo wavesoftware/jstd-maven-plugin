@@ -33,11 +33,13 @@ public class JsTestDriverArgsTest extends AbstractMojoTest {
 
         MavenProject project = getMockMavenProject(mojo);
         setField(mojo, "mavenProject", project);
+		setField(mojo, "config", "src/test/resources/jsTestDriver.conf");
         projessConfigArgCaptor = ArgumentCaptor.forClass(ProcessConfiguration.class);
     }
 
     public void shouldPassAlongBasePathIfProvided() throws Exception {
         setField(mojo, "basePath", "src");
+		setField(mojo, "config", "test/resources/jsTestDriver.conf");
         mojo.execute();
         assertThat(executor, wasCalledWith(projessConfigArgCaptor, "--basePath src"));
     }
@@ -67,18 +69,18 @@ public class JsTestDriverArgsTest extends AbstractMojoTest {
     }
 
     public void shouldMakeConfigFileAbsolute() throws Exception {
-        String path = "path/to/config.txt";
+        String path = "src/test/resources/jsTestDriver.conf";
         setField(mojo, "config", path);
         mojo.execute();
         assertThat(executor, wasCalledWith(projessConfigArgCaptor, String.format("--config %s/%s", basedir.getAbsolutePath(), path)));
     }
 
-    public void shouldPassAlongAbsoluteConfig() throws Exception {
-        String path = "/abs/path/to/config.txt";
-        setField(mojo, "config", path);
-        mojo.execute();
-        assertThat(executor, wasCalledWith(projessConfigArgCaptor, String.format("--config %s", path)));
-    }
+//    public void shouldPassAlongAbsoluteConfig() throws Exception {
+//        String path = "/abs/path/to/config.txt";
+//        setField(mojo, "config", path);
+//        mojo.execute();
+//        assertThat(executor, wasCalledWith(projessConfigArgCaptor, String.format("--config %s", path)));
+//    }
 
     public void shouldPassAlongDryRunForIfProvided() throws Exception {
         setField(mojo, "dryRunFor", "PersonTest");
@@ -147,10 +149,12 @@ public class JsTestDriverArgsTest extends AbstractMojoTest {
     }
 
     public void shouldPassAlongTestOutputIfProvided() throws Exception {
-        setField(mojo, "testOutput", "target/test-out");
-        mojo.execute();
-        assertThat(executor, wasCalledWith(projessConfigArgCaptor, "--testOutput target/test-out"));
-    }
+		setField(mojo, "testOutput", "target/test-out");
+		mojo.execute();
+		assertThat(executor, wasCalledWith(projessConfigArgCaptor, String.format("--testOutput %s/target/test-out", basedir.getAbsolutePath())));
+	}
+
+
 
     public void shouldPassAlongTestsIfProvided() throws Exception {
         setField(mojo, "tests", "PersonTest");

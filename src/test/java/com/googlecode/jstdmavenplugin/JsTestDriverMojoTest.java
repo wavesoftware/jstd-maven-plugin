@@ -34,6 +34,7 @@ public class JsTestDriverMojoTest extends AbstractMojoTest {
 
         MavenProject project = getMockMavenProject(mojo);
         setField(mojo, "mavenProject", project);
+		setField(mojo, "config", "src/test/resources/jsTestDriver.conf");
         projessConfigArgCaptor = ArgumentCaptor.forClass(ProcessConfiguration.class);
     }
 

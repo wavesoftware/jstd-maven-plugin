@@ -50,7 +50,7 @@ public abstract class AbstractMojoTest {
         when(project.getArtifacts()).thenReturn(artifacts);
 
         basedir = mock(File.class);
-        when(basedir.getAbsolutePath()).thenReturn("/path/to/project/root");
+        when(basedir.getAbsolutePath()).thenReturn(new File(".").getAbsolutePath());
         when(project.getBasedir()).thenReturn(basedir);
 
         setField(mojo, "groupId", GROUP_ID);
