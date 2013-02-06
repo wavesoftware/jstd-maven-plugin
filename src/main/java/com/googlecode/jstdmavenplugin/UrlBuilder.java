@@ -7,7 +7,7 @@ public class UrlBuilder
 {
     public static String build(String... parts)
     {
-        StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
         for (String part : parts)
         {
             buffer.append(part);

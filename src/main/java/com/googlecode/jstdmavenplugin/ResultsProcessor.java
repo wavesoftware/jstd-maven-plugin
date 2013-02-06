@@ -19,7 +19,7 @@ public class ResultsProcessor
 
         if (testRunnerResults == null || testRunnerResults.hasFailures())
         {
-            StringBuffer errorString = new StringBuffer();
+			StringBuilder errorString = new StringBuilder();
             errorString.append("Test failure:");
             if (testRunnerResults == null)
             {

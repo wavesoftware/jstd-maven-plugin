@@ -7,6 +7,7 @@ import org.apache.maven.project.MavenProject;
 /**
  * Copyright 2009-2011, Burke Webster (burke.webster@gmail.com)
  */
+// todo improve this
 public class ArtifactLocator
 {
     private MavenProject project;

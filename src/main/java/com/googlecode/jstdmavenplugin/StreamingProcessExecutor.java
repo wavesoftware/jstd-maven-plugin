@@ -12,7 +12,7 @@ public class StreamingProcessExecutor implements ProcessExecutor
 {
     public String execute(ProcessConfiguration jarConfig)
     {
-        StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
         try
         {
             Process process = create(jarConfig);
