@@ -1,43 +1,33 @@
 package com.googlecode.jstdmavenplugin;
 
 import org.apache.maven.artifact.Artifact;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
+import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.repository.ArtifactRepository;
+import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
+import org.apache.maven.artifact.resolver.ArtifactResolutionRequest;
+import org.apache.maven.artifact.resolver.ArtifactResolver;
 
-/**
- * Copyright 2009-2011, Burke Webster (burke.webster@gmail.com)
- */
-// todo improve this
-public class ArtifactLocator
-{
-    private MavenProject project;
+public class ArtifactLocator {
+	private final ArtifactFactory artifactFactory;
+	private final ArtifactResolver artifactResolver;
+	private final ArtifactRepository localRepository;
 
-    public ArtifactLocator(MavenProject project)
-    {
-        this.project = project;
-    }
+	public ArtifactLocator(ArtifactFactory artifactFactory, ArtifactResolver artifactResolver, ArtifactRepository localRepository) {
+		this.artifactFactory = artifactFactory;
+		this.artifactResolver = artifactResolver;
+		this.localRepository = localRepository;
+	}
 
-    public Artifact findArtifact(String groupId, String artifactId)
-    {
-        for (Object object : project.getArtifacts())
-        {
-            Artifact artifact = (Artifact) object;
-            if (artifact.getGroupId().equals(groupId) && matchesArtifactId(artifactId, artifact))
-            {
-                return artifact;
-            }
-        }
+	public String getAbsolutePathToArtifact(final MavenCoordinate coordinate) throws ArtifactNotFoundException {
+		Artifact artifact = artifactFactory.createArtifact(coordinate.getGroupId(), coordinate.getArtifactId(), coordinate.getVersion(), "", coordinate.getFileType());
+		ArtifactResolutionRequest request = new ArtifactResolutionRequest();
+		request.setArtifact(artifact);
+		request.setLocalRepository(localRepository);
+		artifactResolver.resolve(request);
+		if (artifact.getFile() == null) {
+			throw new ArtifactNotFoundException("Unable to find artifact.", artifact);
+		}
+		return artifact.getFile().getAbsolutePath();
+	}
 
-        Log log = MojoLogger.getInstance().getLog();
-        log.error(String.format("Failed to locate %s:%s", groupId, artifactId));
-        log.error("This probably means that you didn't specify it as a dependency in the pom.xml file");
-        
-        throw new RuntimeException(String.format("Failed to locate %s:%s", groupId, artifactId));
-    }
-
-    private boolean matchesArtifactId(String artifactId, Artifact artifact) {
-        return artifact.getArtifactId().equals(artifactId) ||
-                artifact.getArtifactId().equals(String.format("maven-%s-plugin", artifactId)) ||
-                artifact.getArtifactId().equals(String.format("%s-maven-plugin", artifactId));
-    }
 }

@@ -38,6 +38,7 @@
 
     <properties>
         <maven.plugin.dev.api.version>3.0.4</maven.plugin.dev.api.version>
+        <jstd.version>1.3.5</jstd.version>
     </properties>
 
     <dependencies>
@@ -54,8 +55,7 @@
         <dependency>
             <groupId>com.google.jstestdriver</groupId>
             <artifactId>jstestdriver</artifactId>
-            <version>1.3.5</version>
-            <scope>provided</scope>
+            <version>${jstd.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -116,6 +116,28 @@
                     <source>1.6</source>
                     <target>1.6</target>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.2</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <file>target/classes/jstdCoordinate.properties</file>
+                    <replacements>
+                        <replacement>
+                            <token>JSTD.VERSION</token>
+                            <value>${jstd.version}</value>
+                        </replacement>
+                    </replacements>
                 </configuration>
             </plugin>
         </plugins>

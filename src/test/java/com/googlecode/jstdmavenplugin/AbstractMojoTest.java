@@ -53,8 +53,6 @@ public abstract class AbstractMojoTest {
         when(basedir.getAbsolutePath()).thenReturn(new File(".").getAbsolutePath());
         when(project.getBasedir()).thenReturn(basedir);
 
-        setField(mojo, "groupId", GROUP_ID);
-        setField(mojo, "artifactId", ARTIFACT_ID);
         setField(mojo, "mavenProject", project);
         setField(mojo, "dependencies", Collections.<Artifact>emptyList());
 

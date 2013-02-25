@@ -1,5 +1,9 @@
 package com.googlecode.jstdmavenplugin;
 
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.DefaultArtifact;
+import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.resolver.ArtifactResolver;
 import org.apache.maven.project.MavenProject;
 import org.mockito.ArgumentCaptor;
 import org.testng.annotations.BeforeMethod;
@@ -21,20 +25,34 @@ import static org.testng.Assert.fail;
 @Test
 public class JsTestDriverMojoTest extends AbstractMojoTest {
 
+	private static final String MAVEN_REPO_PATH = System.getProperty("user.home") + File.separator + ".m2" + File.separator + "repository" + File.separator;
+
     private StreamingProcessExecutor executor;
     private ResultsProcessor processor;
     private JsTestDriverMojo mojo;
     private ArgumentCaptor<ProcessConfiguration> projessConfigArgCaptor;
+	private ArtifactResolver artifactResolver;
+	private Artifact artifact;
+	private ArtifactFactory artifactFactory;
 
     @BeforeMethod
     public void setUp() throws Exception {
         executor = mock(StreamingProcessExecutor.class);
         processor = mock(ResultsProcessor.class);
-        mojo = new JsTestDriverMojo(executor, processor);
+		artifactResolver = mock(ArtifactResolver.class);
+		artifact = mock(Artifact.class);
+		when(artifact.getFile()).thenReturn(new File(MAVEN_REPO_PATH));
+		artifactFactory = mock(ArtifactFactory.class);
+		MavenCoordinate coordinate = new JstdCoordinate();
+		when(artifactFactory.createArtifact(coordinate.getGroupId(), coordinate.getArtifactId(), coordinate.getVersion(), "", coordinate.getFileType()))
+				.thenReturn(artifact);
 
+        mojo = new JsTestDriverMojo(executor, processor);
         MavenProject project = getMockMavenProject(mojo);
         setField(mojo, "mavenProject", project);
 		setField(mojo, "config", "src/test/resources/jsTestDriver.conf");
+		setField(mojo, "artifactFactory", artifactFactory);
+		setField(mojo, "artifactResolver", artifactResolver);
         projessConfigArgCaptor = ArgumentCaptor.forClass(ProcessConfiguration.class);
     }
 
