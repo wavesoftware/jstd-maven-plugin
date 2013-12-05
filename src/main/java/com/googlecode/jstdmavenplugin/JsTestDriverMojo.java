@@ -15,11 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Copyright 2009-2011, Burke Webster (burke.webster@gmail.com)
+ * Copyright 2009-2011, Burke Webster <burke.webster@gmail.com>
  *
  * @requiresDependencyResolution test
  * @goal test
  * @phase test
+ * @author Burke Webster <burke.webster@gmail.com>
+ * @author Krzysztof Suszyński <krzysztof.suszynski@gmail.com>
  */
 public class JsTestDriverMojo extends AbstractMojo {
 	/**
@@ -152,8 +154,7 @@ public class JsTestDriverMojo extends AbstractMojo {
 	/**
 	 * Used to look up Artifacts in the remote repository.
 	 *
-	 * @parameter expression=
-	 * "${component.org.apache.maven.artifact.factory.ArtifactFactory}"
+	 * @component role="org.apache.maven.artifact.factory.ArtifactFactory"
 	 * @required
 	 * @readonly
 	 */
@@ -162,8 +163,7 @@ public class JsTestDriverMojo extends AbstractMojo {
 	/**
 	 * Used to look up Artifacts in the remote repository.
 	 *
-	 * @parameter expression=
-	 * "${component.org.apache.maven.artifact.resolver.ArtifactResolver}"
+	 * @component role="org.apache.maven.artifact.resolver.ArtifactResolver"
 	 * @required
 	 * @readonly
 	 */

@@ -34,7 +34,12 @@
         <developerConnection>scm:git:https://code.google.com/p/jstd-maven-plugin/</developerConnection>
     </scm>
 
-    <developers>
+	<developers>
+		<developer>
+			<id>k.suszynski</id>
+			<name>Krzysztof Suszyński</name>
+			<email>krzysztof.suszynski@gmail.com</email>
+		</developer>
         <developer>
             <id>burke.webster</id>
             <name>Burke Webster</name>
