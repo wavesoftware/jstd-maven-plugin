@@ -1,4 +1,4 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;

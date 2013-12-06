@@ -4,11 +4,11 @@
 
     <name>JsTestDriver Maven Plugin</name>
     <description>A plugin to allow JS Test Driver to run via Maven.</description>
-    <groupId>com.googlecode.jstd-maven-plugin</groupId>
+    <groupId>pl.wavesoftware.maven.plugin</groupId>
     <artifactId>jstd-maven-plugin</artifactId>
     <version>1.3.5.2-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
-    <url>http://code.google.com/jstd-maven-plugin</url>
+    <url>http://github.com/wavesoftware/jstd-maven-plugin</url>
 
     <prerequisites>
         <maven>2.2.1</maven>
@@ -29,9 +29,9 @@
     </licenses>
 
     <scm>
-        <url>https://code.google.com/p/jstd-maven-plugin/</url>
-        <connection>scm:git:https://code.google.com/p/jstd-maven-plugin/</connection>
-        <developerConnection>scm:git:https://code.google.com/p/jstd-maven-plugin/</developerConnection>
+		<url>https://github.com/wavesoftware/jstd-maven-plugin</url>
+		<connection>scm:git:git@github.com:wavesoftware/jstd-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:wavesoftware/jstd-maven-plugin.git</developerConnection>
     </scm>
 
 	<developers>

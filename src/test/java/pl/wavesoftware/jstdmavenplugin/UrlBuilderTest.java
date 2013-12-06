@@ -1,8 +1,8 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
 import static org.testng.Assert.assertEquals;
 
-import com.googlecode.jstdmavenplugin.UrlBuilder;
+import pl.wavesoftware.jstdmavenplugin.UrlBuilder;
 import org.testng.annotations.Test;
 
 /**

@@ -1,6 +1,6 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
-import com.googlecode.jstdmavenplugin.JsTestDriverMojo;
+import pl.wavesoftware.jstdmavenplugin.JsTestDriverMojo;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.project.MavenProject;
 

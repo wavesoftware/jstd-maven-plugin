@@ -1,4 +1,4 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.artifact.Artifact;

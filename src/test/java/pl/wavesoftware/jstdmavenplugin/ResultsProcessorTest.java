@@ -1,6 +1,6 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
-import com.googlecode.jstdmavenplugin.ResultsProcessor;
+import pl.wavesoftware.jstdmavenplugin.ResultsProcessor;
 import org.apache.maven.plugin.MojoExecutionException;
 import static org.testng.Assert.fail;
 import org.testng.annotations.Test;

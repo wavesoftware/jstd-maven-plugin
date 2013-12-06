@@ -1,5 +1,7 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
+import pl.wavesoftware.jstdmavenplugin.MavenCoordinate;
+import pl.wavesoftware.jstdmavenplugin.ArtifactLocator;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.resolver.ArtifactNotFoundException;

@@ -1,6 +1,6 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
-import com.googlecode.jstdmavenplugin.JarProcessConfiguration;
+import pl.wavesoftware.jstdmavenplugin.JarProcessConfiguration;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
 public interface MavenCoordinate {
 	public String getGroupId();

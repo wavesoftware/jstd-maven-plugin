@@ -1,7 +1,7 @@
-package com.googlecode.jstdmavenplugin.matchers;
+package pl.wavesoftware.jstdmavenplugin.matchers;
 
-import com.googlecode.jstdmavenplugin.ProcessConfiguration;
-import com.googlecode.jstdmavenplugin.ProcessExecutor;
+import pl.wavesoftware.jstdmavenplugin.ProcessConfiguration;
+import pl.wavesoftware.jstdmavenplugin.ProcessExecutor;
 import org.hamcrest.Description;
 import org.mockito.ArgumentCaptor;
 

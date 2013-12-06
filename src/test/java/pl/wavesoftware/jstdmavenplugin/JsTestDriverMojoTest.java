@@ -1,5 +1,11 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
+import pl.wavesoftware.jstdmavenplugin.MavenCoordinate;
+import pl.wavesoftware.jstdmavenplugin.ResultsProcessor;
+import pl.wavesoftware.jstdmavenplugin.JstdCoordinate;
+import pl.wavesoftware.jstdmavenplugin.ProcessConfiguration;
+import pl.wavesoftware.jstdmavenplugin.JsTestDriverMojo;
+import pl.wavesoftware.jstdmavenplugin.StreamingProcessExecutor;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.factory.ArtifactFactory;
@@ -11,7 +17,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 
-import static com.googlecode.jstdmavenplugin.matchers.ExecutorCalledWithMatcher.wasCalledWith;
+import static pl.wavesoftware.jstdmavenplugin.matchers.ExecutorCalledWithMatcher.wasCalledWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;

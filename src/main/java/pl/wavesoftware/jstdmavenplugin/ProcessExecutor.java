@@ -1,4 +1,4 @@
-package com.googlecode.jstdmavenplugin;
+package pl.wavesoftware.jstdmavenplugin;
 
 /**
  * Copyright 2009-2011, Burke Webster (burke.webster@gmail.com)
